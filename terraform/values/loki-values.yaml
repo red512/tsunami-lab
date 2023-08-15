@@ -1,0 +1,49 @@
+scrape_configs:
+  - job_name: tsunami
+    static_configs:
+      - targets:
+          - localhost
+        labels:
+          job: tsunami
+    positions:
+      filename: /usr/tsunami/tsunami-output.json
+    pipeline_stages:
+      - json:
+          expressions:
+            scanStatus: $.scanStatus
+            scanStartTimestamp: $.scanStartTimestamp
+            scanDuration: $.scanDuration
+            ipAddress: $.reconnaissanceReport.targetInfo.networkEndpoints[0].ipAddress.address
+
+# scrape_configs:
+#   - job_name: json_logs
+#     static_configs:
+#       - targets:
+#           - localhost  # Assuming Promtail runs on the same machine as your JSON log file
+#         labels:
+#           job: json_logs
+#     positions:
+#       filename: /usr/tsunami/tsunami-output.json
+#     pipeline_stages:
+#       - json:
+#           expressions:
+#             message: $.message  # Adjust this based on your JSON structure
+
+loki:
+  # storage:
+  #   bucketNames:
+  #     chunks: chunks
+  #     ruler: ruler
+  #     admin: admin
+  #   type: s3
+  #   s3:
+  #     endpoint: <endpoint>
+  #     region: <AWS region>
+  #     secretAccessKey: <AWS secret access key>
+  #     accessKeyId: <AWS access key ID>
+  #     s3ForcePathStyle: false
+  #     insecure: false
+
+  minio:
+  enabled: true
+

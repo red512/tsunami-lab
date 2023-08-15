@@ -1,0 +1,51 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Workflow
+metadata:
+  generateName: ip-processing-workflow-
+spec:
+  entrypoint: start
+  templates:
+    - name: start
+      steps:
+        - - name: Scan
+            template: task-template
+            arguments:
+              parameters: 
+                - name: text
+                  value: "{{item}}"
+            withItems:
+              - 10.244.0.142
+              - 10.244.0.143
+              - 10.244.0.168
+
+    - name: task-template
+      inputs:
+        parameters:
+          - name: text
+      container:
+        image: projectred521/tsunami:v0.1.0
+        command: ["/bin/sh"]
+        args:
+          - -c
+          - |
+            ip_address="{{inputs.parameters.text}}"
+            java -cp "tsunami.jar:plugins/*" \
+            -Dtsunami-config.location=tsunami.yaml \
+            com.google.tsunami.main.cli.TsunamiCli \
+            --ip-v4-target=$ip_address \
+            --scan-results-local-output-format=JSON \
+            --scan-results-local-output-filename=tsunami-output.json
+            cat tsunami-output.json
+
+
+    # - name: task-template
+    #   inputs:
+    #     parameters:
+    #       - name: text
+    #   script:
+    #     image: python:3.8-slim
+    #     command: [python]
+    #     source: |
+    #       ip_address = "{{inputs.parameters.text}}"
+    #       print("Processing IP:", ip_address)
+    #       # Add your logic here for running the Java command or other tasks

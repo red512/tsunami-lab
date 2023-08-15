@@ -1,0 +1,11 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Workflow
+metadata:
+  generateName: pod-ip-grabber-
+spec:
+  entrypoint: main
+  templates:
+    - name: main
+      container:
+        image: python:3.8
+        command: ["python", "/pod_ip_grabber.py"]

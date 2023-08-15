@@ -1,0 +1,13 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Workflow
+metadata:
+  generateName: pod-name-grabber-
+spec:
+  entrypoint: main
+  templates:
+    - name: main
+      container:
+        image: python:3.8
+        command: ["/bin/sh", "-c"]
+        args:
+          - echo "<BASE64_ENCODED_SCRIPT>" | base64 -d | python -

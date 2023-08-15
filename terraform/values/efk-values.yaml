@@ -1,0 +1,9 @@
+# fluentd:
+#   extraConfig: |
+#     <source>
+#       @type tail
+#       path /usr/tsunami/logs/*.log
+#       pos_file /var/log/fluent/tsunami.log.pos
+#       tag tsunami.logs
+#       format json
+#     </source>
