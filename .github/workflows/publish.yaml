@@ -9,7 +9,7 @@ jobs:
         uses: actions/checkout@v3
       - name: build 
         run: |
-          docker build . -t projectred521/tsunami:latest
+          docker build -t projectred521/tsunami:latest tsunami-security-scanner-master/.
       - name: publish 
         run: |
           docker login -u projectred521 -p ${{ secrets.DOCKER_HUB_TOKEN }}
