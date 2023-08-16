@@ -1,9 +1,8 @@
 resource "helm_release" "loki" {
-  name       = "loki-stack"
-  repository = "https://grafana.github.io/helm-charts"
-  chart      = "loki-stack"
-  # version          = "2.5.0"      # Replace with the desired version
-  namespace        = "monitoring" # Change to your desired namespace
+  name             = "loki-stack"
+  repository       = "https://grafana.github.io/helm-charts"
+  chart            = "loki-stack"
+  namespace        = "monitoring" # 
   create_namespace = true
   values = [
     file("values/loki-values.yaml")

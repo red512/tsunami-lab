@@ -1,1 +1,5 @@
-ipAddresses: 10.244.0.142 10.244.0.143 10.244.0.144
+#Later this will be used as 
+ipAddresses:
+  - 10.244.0.118
+  - 10.244.0.143
+  - 10.244.0.168

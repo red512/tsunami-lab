@@ -1,13 +1,10 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Workflow
 metadata:
-  generateName: pod-name-grabber-
+  generateName: ipgrabber-
 spec:
-  entrypoint: main
+  entrypoint: ipgrabber-job
   templates:
-    - name: main
+    - name: ipgrabber-job
       container:
-        image: python:3.8
-        command: ["/bin/sh", "-c"]
-        args:
-          - echo "<BASE64_ENCODED_SCRIPT>" | base64 -d | python -
+        image: projectred521/ipgrabber:latest
