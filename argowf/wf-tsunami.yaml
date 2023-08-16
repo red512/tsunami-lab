@@ -35,6 +35,3 @@ spec:
             --ip-v4-target=$ip_address \
             --scan-results-local-output-format=JSON \
             --scan-results-local-output-filename=tsunami-output.json
-            pwd
-            ls -la
-            cat tsunami-output.json
