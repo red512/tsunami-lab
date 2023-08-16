@@ -15,6 +15,8 @@ Before getting started, make sure you have the following prerequisites set up:
 
 
 TSUNAMI LAB  
+https://github.com/red512/tsunami-lab
+
 ```
 .
 ├── argocd
@@ -25,7 +27,8 @@ TSUNAMI LAB 
 ```
 
 
-TSUNAMI LABS GITOPS (the infra repo).        
+TSUNAMI LABS GITOPS (the infra repo). 
+https://github.com/red512/tsunami-lab-gitops/tree/main/gitops/environments/staging
 ```
 .
 └── gitops
