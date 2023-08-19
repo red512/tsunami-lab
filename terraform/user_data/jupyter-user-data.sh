@@ -1,5 +1,4 @@
 #!/bin/bash
-# user data for the jupyter notebook instances. download, installs and runs jupyter notebook container with no password
 yum update -y
 yum install docker -y
 systemctl start docker

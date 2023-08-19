@@ -10,11 +10,7 @@ module "eks" {
 
   vpc_id     = module.vpc.vpc_id
   subnet_ids = module.vpc.private_subnets
-  # To grant access to your applications running in the EKS cluster,
-  #  you can either attach the IAM role with required IAM policies to the nodes
-  #   or use a more secure option which is to enable IAM Roles for Service Accounts. 
-  #   In that way, you can limit the IAM role to a single pod. Then the node's configuration. 
-  #   For example, you can specify the disk size for each worker.
+
   enable_irsa = true
 
 
@@ -54,14 +50,14 @@ module "eks" {
         effect = "NO_SCHEDULE"
       }]
 
-      instance_types = ["t3.micro"]
-      #   instance_types = ["t3.medium"]
-      capacity_type = "SPOT"
+      # instance_types = ["t3.micro"]
+      instance_types = ["t3.medium"]
+      capacity_type  = "SPOT"
     }
   }
 
-
   manage_aws_auth_configmap = true
+
   aws_auth_roles = [
     {
       rolearn  = module.eks_admins_iam_role.iam_role_arn

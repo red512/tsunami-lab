@@ -1,0 +1,23 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: pod-info-role
+rules:
+- apiGroups: [""]
+  resources: ["pods"]
+  verbs: ["get"]
+
+---
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: pod-info-rolebinding
+subjects:
+- kind: ServiceAccount
+  name: pod-info-sa
+  namespace: argo
+roleRef:
+  kind: Role
+  name: pod-info-role
+  apiGroup: rbac.authorization.k8s.io
