@@ -1,0 +1,14 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Workflow
+metadata:
+  generateName: pod-info-example-
+spec:
+  serviceAccountName: pod-info-sa
+  entrypoint: main
+  templates:
+  - name: main
+    container:
+      image: bitnami/kubectl:latest
+      command: ["/bin/sh"]
+      # args: ["-c", "kubectl get pods -n jupyter-1 --selector=app=your-app"]
+      args: ["-c", "kubectl get pods -n jupyter-1 --selector=app=app=jupyter-1"]

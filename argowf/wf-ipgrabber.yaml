@@ -3,6 +3,7 @@ kind: Workflow
 metadata:
   generateName: ipgrabber-
 spec:
+  serviceAccountName: pod-info-sa
   entrypoint: ipgrabber-job
   templates:
     - name: ipgrabber-job
