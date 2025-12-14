@@ -76,16 +76,6 @@ Workflow
 ![image](https://github.com/red512/tsunami-lab/assets/59205478/b00db2fe-5b86-4ff4-8b5e-13d7445c3d4f)
 
 
-### In each workflow, you have the option to specify a list of IP addresses for future scans:
-
-```
-withItems:
-  - 10.244.0.100
-  - 10.244.0.101
-  - 10.244.0.102
-  ...
-```
-
 ### k8s cluster 
 Here I used EKS cluster that was created in Terraform but you can use any cloud provider or work with Minikube.
 
